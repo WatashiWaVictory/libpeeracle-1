@@ -39,6 +39,10 @@ class TrackerWebSocketsClientObserver : public WebSocketsClientObserver {
   }
 
   void onConnect() {
+    TrackerMessage *message = new TrackerMessage();
+    
+    message->set("type", TrackerMessageInterface::kHello);
+    _client->Send(message);
   }
 
   void onMessage(const char *buffer, size_t length) {
@@ -131,11 +135,11 @@ void TrackerClient::announce(const std::string id, uint32_t got) {
   msg->set("hash", id);
   msg->set("got", got);
 
-  _send(msg);
+  Send(msg);
   delete msg;
 }
 
-void TrackerClient::_send(TrackerMessageInterface *message) {
+void TrackerClient::Send(TrackerMessageInterface *message) {
   char *buffer;
   DataStreamInit dsInit;
   MemoryDataStream *dataStream = new MemoryDataStream(dsInit);

@@ -26,6 +26,10 @@
 #include <string>
 #include <queue>
 
+#if defined(WEBRTC_MAC) || defined(WEBRTC_IOS)
+#import "objc/WebSocketsClient+Internal.h"
+#endif
+
 #ifdef USE_LIBWEBSOCKETS
 #include "third_party/libwebsockets/lib/libwebsockets.h"
 #endif
@@ -50,6 +54,9 @@ class WebSocketsClient : public WebSocketsClientInterface {
  private:
   const std::string &_url;
   WebSocketsClientObserver *_observer;
+#if defined(WEBRTC_MAC) || defined(WEBRTC_IOS)
+  PRCLWebSocketsClient *_prclWebSocketsClient;
+#endif
 
 #ifdef USE_LIBWEBSOCKETS
   struct libwebsocket_context *_context;

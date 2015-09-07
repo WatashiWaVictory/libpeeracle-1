@@ -20,28 +20,13 @@
  * SOFTWARE.
  */
 
-#import "DataStream+Internal.h"
+#import "objc/public/SessionHandle.h"
+#import "SessionHandleObserver+Internal.h"
+#include "peeracle/Metadata/Metadata.h"
+#include "peeracle/Session/SessionHandleInterface.h"
 
-#include "peeracle/DataStream/DataStream.h"
+@interface PRCLSessionHandle ()
 
-@implementation DataStream {
-  peeracle::DataStream *_nativeDataStream;
-}
-
-@end
-
-@implementation DataStream (Internal)
-
-- (peeracle::DataStream*) nativeDataStream {
-  return _nativeDataStream;
-}
-
-- (instancetype)initWithDataStream:(peeracle::DataStream*)dataStream {
-  NSAssert(dataStream != NULL, @"dataStream cannot be NULL");
-  if (self = [super init]) {
-    _nativeDataStream = dataStream;
-  }
-  return self;
-}
+@property(nonatomic, assign) peeracle::SessionHandleInterface *nativeSessionHandle;
 
 @end

@@ -20,27 +20,16 @@
  * SOFTWARE.
  */
 
-#import "DataStream+Internal.h"
+#import "SessionObserver+Internal.h"
 
-#include "peeracle/DataStream/DataStream.h"
+#include "peeracle/Session/SessionObserver.h"
 
-@implementation DataStream {
-  peeracle::DataStream *_nativeDataStream;
-}
+@implementation SessionObserver
 
-@end
+@synthesize nativeSessionObserver = _nativeSessionObserver;
 
-@implementation DataStream (Internal)
-
-- (peeracle::DataStream*) nativeDataStream {
-  return _nativeDataStream;
-}
-
-- (instancetype)initWithDataStream:(peeracle::DataStream*)dataStream {
-  NSAssert(dataStream != NULL, @"dataStream cannot be NULL");
-  if (self = [super init]) {
-    _nativeDataStream = dataStream;
-  }
+- (id) init {
+  self.nativeSessionObserver = new peeracle::SessionObserver; // demander à Axel
   return self;
 }
 

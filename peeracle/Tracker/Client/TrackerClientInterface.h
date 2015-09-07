@@ -28,6 +28,7 @@
 
 namespace peeracle {
 
+class TrackerMessageInterface;
 class TrackerClientInterface {
  public:
   virtual ~TrackerClientInterface() {}
@@ -37,6 +38,7 @@ class TrackerClientInterface {
   virtual bool Update() = 0;
 
   virtual void announce(const std::string id, uint32_t got) = 0;
+  virtual void Send(TrackerMessageInterface *message) = 0;
   virtual const std::string &getUrl() const = 0;
 };
 

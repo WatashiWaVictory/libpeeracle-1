@@ -20,7 +20,7 @@
  * SOFTWARE.
  */
 
-#import "FileDataStream.h"
+#import "objc/public/FileDataStream.h"
 
 #include "objc/FileDataStream+Internal.h"
 
@@ -41,7 +41,7 @@ namespace peeracle {
     [_handle closeFile];
   }
   
-  std::streamsize FileDataStream::length() const {
+  std::streamsize FileDataStream::length() {
     return _handleSize;
   }
   
@@ -59,7 +59,7 @@ namespace peeracle {
     return (std::streamsize)[_handle offsetInFile];
   }
   
-  std::streamsize FileDataStream::tell() const {
+  std::streamsize FileDataStream::tell() {
     return (std::streamsize)[_handle offsetInFile];
   }
   
@@ -96,7 +96,6 @@ namespace peeracle {
 
     NSString *data = [NSString stringWithUTF8String:buffer];
     NSData *buff = [data dataUsingEncoding:NSUTF8StringEncoding];
-    std::streamsize cursor = (std::streamsize)[_handle offsetInFile];
     [_handle writeData:buff];
     return length;
   }
@@ -104,9 +103,12 @@ namespace peeracle {
 
 @implementation FileDataStream
 
+@end
+
+@implementation FileDataStream (Internal)
+
 - (id) init {
-  self.nativeDataStream = new peeracle::FileDataStream();
-  return self;
+  return [super initWithDataStream:new peeracle::FileDataStream()];
 }
 
 @end
