@@ -21,7 +21,7 @@
  */
 
 #include "third_party/webrtc/testing/gtest/include/gtest/gtest.h"
-#include "peeracle/WebSocketsClient/WebSocketsClient.h"
+// #include "peeracle/WebSocketsClient/WebSocketsClient.h"
 
 namespace peeracle {
 
@@ -33,7 +33,7 @@ class WebSocketsClientTest : public testing::Test {
   virtual void TearDown() {
   }
 
-  WebSocketsClient *_client;
+  // WebSocketsClient *_client;
 };
 
 }  // namespace peeracle

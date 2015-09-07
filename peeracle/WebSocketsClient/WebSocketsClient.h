@@ -28,6 +28,8 @@
 
 #ifdef USE_LIBWEBSOCKETS
 #include "third_party/libwebsockets/lib/libwebsockets.h"
+#elif defined (WEBRTC_MAC) || defined(WEBRTC_OSX)
+// #import "objc/WebSocketsClient+Internal.h"
 #endif
 #include "peeracle/WebSocketsClient/WebSocketsClientInterface.h"
 #include "peeracle/WebSocketsClient/WebSocketsClientObserver.h"
@@ -53,7 +55,7 @@ class WebSocketsClient : public WebSocketsClientInterface {
  private:
   const std::string &_url;
   WebSocketsClientObserver *_observer;
-  bool _connected;
+  //bool _connected;
 
 #ifdef USE_LIBWEBSOCKETS
   struct libwebsocket *_wsi;
@@ -79,6 +81,8 @@ class WebSocketsClient : public WebSocketsClientInterface {
                       struct libwebsocket *wsi,
                       enum libwebsocket_callback_reasons reason,
                       void *user, void *in, size_t len);
+#elif defined (WEBRTC_MAC) || defined(WEBRTC_OSX)
+  PRCLWebSocketsClient *_prclWebSocketsClient;
 #endif
 #ifdef WEBRTC_ANDROID
   const ScopedGlobalRef<jclass> _j_class;

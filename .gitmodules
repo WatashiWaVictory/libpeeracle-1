@@ -16,3 +16,6 @@
 [submodule "third_party/webrtc"]
 	path = third_party/webrtc
 	url = https://github.com/peeracle/webrtc
+[submodule "third_party/ffmpeg"]
+	path = third_party/ffmpeg
+	url = https://chromium.googlesource.com/chromium/third_party/ffmpeg

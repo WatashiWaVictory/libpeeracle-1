@@ -25,6 +25,7 @@
 #include <string>
 #include <iostream>
 
+#ifdef USE_LIBWEBSOCKETS
 #include "peeracle/WebSocketsClient/WebSocketsClient.h"
 #include "peeracle/Tracker/Message/TrackerMessage.h"
 #include "peeracle/DataStream/MemoryDataStream.h"
@@ -308,3 +309,6 @@ bool WebSocketsClient::Disconnect() {
 }
 
 }  // namespace peeracle
+
+#endif
+

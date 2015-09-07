@@ -134,7 +134,7 @@ void TrackerMessage::unset(const std::string &key) {
 
   _keys.erase(key);
 }
-
+  
 bool TrackerMessage::_serializeWelcome(DataStream *dataStream) {
   std::string id;
 

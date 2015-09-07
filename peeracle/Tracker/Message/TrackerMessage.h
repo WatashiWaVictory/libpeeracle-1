@@ -30,6 +30,7 @@
 
 namespace peeracle {
 
+class PRCLWebSocketsClient;
 class TrackerMessage : public TrackerMessageInterface {
  public:
   explicit TrackerMessage(uint8_t type = kKeepAlive);
